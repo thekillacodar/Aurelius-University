@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurelius University - Excellence in Education</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1a2b4c;
+            --ivory: #fefdf8;
+            --gold: #d4af37;
+            --light-gold: #f4e8a6;
+            --gray: #6b7280;
+            --light-gray: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--navy);
+            background-color: var(--ivory);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--ivory);
+            box-shadow: 0 2px 20px rgba(26, 43, 76, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--navy);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: var(--gray);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--navy);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--navy);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+        }
+
+        .section {
+            display: none;
+            padding: 60px 0;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, #2d4a73 100%);
+            color: var(--ivory);
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background: var(--light-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .feature-card {
+            background: var(--ivory);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(26, 43, 76, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--navy);
+        }
+
+        /* Admissions Section */
+        .admissions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .admission-card {
+            background: var(--ivory);
+            border: 2px solid var(--light-gold);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .admission-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .admission-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--navy);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .admission-details {
+            list-style: none;
+        }
+
+        .admission-details li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .admission-details li:last-child {
+            border-bottom: none;
+        }
+
+        /* Student Results Portal */
+        .login-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: var(--ivory);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(26, 43, 76, 0.15);
+        }
+
+        .login-form h2 {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--navy);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--navy);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .login-btn {
+            width: 100%;
+            background: var(--navy);
+            color: var(--ivory);
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: #2d4a73;
+        }
+
+        .results-dashboard {
+            display: none;
+        }
+
+        .dashboard-header {
+            background: var(--navy);
+            color: var(--ivory);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-item .label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .info-item .value {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .results-table {
+            background: var(--ivory);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(26, 43, 76, 0.1);
+        }
+
+        .results-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .results-table th {
+            background: var(--light-gold);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .results-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .results-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .grade {
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: var(--light-gold);
+            color: var(--navy);
+        }
+
+        /* Programmes Section */
+        .programmes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .programme-card {
+            background: var(--ivory);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(26, 43, 76, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .programme-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .programme-header {
+            background: var(--navy);
+            color: var(--ivory);
+            padding: 25px;
+            text-align: center;
+        }
+
+        .programme-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .programme-content {
+            padding: 25px;
+        }
+
+        .programme-list {
+            list-style: none;
+        }
+
+        .programme-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .programme-list li::before {
+            content: '•';
+            color: var(--gold);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(26, 43, 76, 0.15);
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--light-gold) 0%, var(--gold) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--ivory);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .footer-section p, .footer-section li {
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--light-gold);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .admissions-grid,
+            .programmes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .student-info {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .student-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">A</div>
+                    <div class="logo-text">
+                        <h1>Aurelius University</h1>
+                        <p>Excellence • Innovation • Heritage</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" onclick="showSection('home')">Home</a></li>
+                        <li><a href="#" onclick="showSection('admissions')">Admissions</a></li>
+                        <li><a href="#" onclick="showSection('programmes')">Programmes</a></li>
+                        <li><a href="#" onclick="showSection('results')">Student Results</a></li>
+                        <li><a href="#" onclick="showSection('about')">About Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="container">
+                    <h1>Shaping Tomorrow's Leaders</h1>
+                    <p>Where academic excellence meets innovation, and tradition guides transformation. Join a community of scholars dedicated to advancing knowledge and creating positive change.</p>
+                    <a href="#" class="cta-button" onclick="showSection('admissions')">Apply Now</a>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎓</div>
+                        <h3>Academic Excellence</h3>
+                        <p>World-class faculty and cutting-edge research facilities ensure our students receive the finest education available.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔬</div>
+                        <h3>Innovation Hub</h3>
+                        <p>State-of-the-art laboratories and innovation centers foster creativity and breakthrough discoveries.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <h3>Global Network</h3>
+                        <p>Connect with alumni and partners worldwide through our extensive international network and exchange programs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admissions Section -->
+        <section id="admissions" class="section">
+            <div class="container">
+                <h2 class="section-title">Admissions</h2>
+                <p class="section-subtitle">Begin your journey of academic excellence with Aurelius University. We offer multiple pathways to accommodate diverse educational backgrounds and career aspirations.</p>
+                
+                <div class="admissions-grid">
+                    <div class="admission-card">
+                        <h3>Regular Admissions</h3>
+                        <ul class="admission-details">
+                            <li><span>Application Deadline:</span> <strong>March 15, 2024</strong></li>
+                            <li><span>Entry Requirements:</span> <strong>High School Diploma</strong></li>
+                            <li><span>Minimum GPA:</span> <strong>3.5/4.0</strong></li>
+                            <li><span>Standardized Tests:</span> <strong>SAT/ACT Required</strong></li>
+                            <li><span>Application Fee:</span> <strong>$75</strong></li>
+                            <li><span>Decision Date:</span> <strong>April 30, 2024</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="admission-card">
+                        <h3>Part-Time Studies</h3>
+                        <ul class="admission-details">
+                            <li><span>Application Deadline:</span> <strong>Rolling Basis</strong></li>
+                            <li><span>Entry Requirements:</span> <strong>Work Experience</strong></li>
+                            <li><span>Minimum Age:</span> <strong>21 Years</strong></li>
+                            <li><span>Schedule:</span> <strong>Evening & Weekend</strong></li>
+                            <li><span>Application Fee:</span> <strong>$50</strong></li>
+                            <li><span>Decision Timeline:</span> <strong>2-3 Weeks</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="admission-card">
+                        <h3>Postgraduate Programs</h3>
+                        <ul class="admission-details">
+                            <li><span>Application Deadline:</span> <strong>January 31, 2024</strong></li>
+                            <li><span>Entry Requirements:</span> <strong>Bachelor's Degree</strong></li>
+                            <li><span>Minimum GPA:</span> <strong>3.0/4.0</strong></li>
+                            <li><span>Additional Tests:</span> <strong>GRE/GMAT</strong></li>
+                            <li><span>Application Fee:</span> <strong>$100</strong></li>
+                            <li><span>Decision Date:</span> <strong>March 15, 2024</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Results Section -->
+        <section id="results" class="section">
+            <div class="container">
+                <h2 class="section-title">Student Results Portal</h2>
+                <p class="section-subtitle">Access your academic records, grades, and performance analytics through our secure student portal.</p>
+                
+                <div id="loginForm" class="login-container">
+                    <form class="login-form" onsubmit="handleLogin(event)">
+                        <h2>Student Login</h2>
+                        <div class="form-group">
+                            <label for="matNumber">Matriculation Number</label>
+                            <input type="text" id="matNumber" name="matNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="login-btn">Access Results</button>
+                    </form>
+                </div>
+
+                <div id="resultsDashboard" class="results-dashboard">
+                    <div class="dashboard-header">
+                        <h2>Academic Dashboard</h2>
+                        <div class="student-info">
+                            <div class="info-item">
+                                <div class="label">Student Name</div>
+                                <div class="value" id="studentName">Jonathan Amobi</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="label">Matriculation Number</div>
+                                <div class="value" id="studentMat">DE.2021/4301</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="label">Level</div>
+                                <div class="value" id="studentLevel">400</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="label">Faculty</div>
+                                <div class="value" id="studentFaculty">Sciences</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="label">Department</div>
+                                <div class="value" id="studentDept">Computer Science</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="label">CGPA</div>
+                                <div class="value" id="studentCGPA">4.12</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="label">Current GPA</div>
+                                <div class="value" id="studentGPA">3.98</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="label">Academic Standing</div>
+                                <div class="value" id="academicStanding">First Class</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="results-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Course Title</th>
+                                    <th>Credit Units</th>
+                                    <th>Grade</th>
+                                    <th>Grade Points</th>
+                                </tr>
+                            </thead>
+                            <tbody id="coursesTable">
+                                <tr>
+                                    <td>CMS436</td>
+                                    <td>Algorithms & Generic Programming</td>
+                                    <td>3</td>
+                                    <td><span class="grade">A</span></td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>CMS434</td>
+                                    <td>Modeling and Simulation</td>
+                                    <td>2</td>
+                                    <td><span class="grade">B+</span></td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>CMS456</td>
+                                    <td>Computer Security</td>
+                                    <td>3</td>
+                                    <td><span class="grade">A</span></td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>CMS464</td>
+                                    <td>Human-Computer Interactions</td>
+                                    <td>3</td>
+                                    <td><span class="grade">A</span></td>
+                                    <td>12</td>
+                                </tr>
+                                <tr>
+                                    <td>CMS472</td>
+                                    <td>Project</td>
+                                    <td>6</td>
+                                    <td><span class="grade">A</span></td>
+                                    <td>24</td>
+                                </tr>
+                                <tr>
+                                    <td>CMS418</td>
+                                    <td>Net-Centric Computing</td>
+                                    <td>3</td>
+                                    <td><span class="grade">A-</span></td>
+                                    <td>11</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programmes Section -->
+        <section id="programmes" class="section">
+            <div class="container">
+                <h2 class="section-title">Academic Programmes</h2>
+                <p class="section-subtitle">Discover our comprehensive range of undergraduate, postgraduate, and professional programmes designed to prepare you for success in your chosen field.</p>
+                
+                <div class="programmes-grid">
+                    <div class="programme-card">
+                        <div class="programme-header">
+                            <h3>Undergraduate Programmes</h3>
+                            <p>Bachelor's Degree Programs</p>
+                        </div>
+                        <div class="programme-content">
+                            <ul class="programme-list">
+                                <li>Computer Science & Engineering</li>
+                                <li>Business Administration</li>
+                                <li>Medicine & Surgery</li>
+                                <li>Law & Jurisprudence</li>
+                                <li>Environmental Sciences</li>
+                                <li>Psychology & Behavioral Sciences</li>
+                                <li>Economics & Finance</li>
+                                <li>International Relations</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="programme-card">
+                        <div class="programme-header">
+                            <h3>Postgraduate Programmes</h3>
+                            <p>Master's & Doctoral Degrees</p>
+                        </div>
+                        <div class="programme-content">
+                            <ul class="programme-list">
+                                <li>Master of Business Administration (MBA)</li>
+                                <li>Master of Science in Data Science</li>
+                                <li>Master of Public Health</li>
+                                <li>Master of Laws (LLM)</li>
+                                <li>PhD in Various Disciplines</li>
+                                <li>Master of Education</li>
+                                <li>Master of Engineering</li>
+                                <li>Master of Fine Arts</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="programme-card">
+                        <div class="programme-header">
+                            <h3>Professional Programmes</h3>
+                            <p>Certificate & Diploma Courses</p>
+                        </div>
+                        <div class="programme-content">
+                            <ul class="programme-list">
+                                <li>Digital Marketing Certification</li>
+                                <li>Project Management Professional</li>
+                                <li>Data Analytics Certificate</li>
+                                <li>Leadership Development Program</li>
+                                <li>Cybersecurity Specialist</li>
+                                <li>Financial Planning Certificate</li>
+                                <li>Healthcare Management</li>
+                                <li>Executive Education Programs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Aurelius University</h2>
+                <p class="section-subtitle">A legacy of excellence spanning over a century, committed to fostering intellectual growth and societal advancement.</p>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Our Heritage & Mission</h2>
+                        <p>Founded in 1892, Aurelius University stands as a beacon of academic excellence and intellectual inquiry. Named after the philosopher-emperor Marcus Aurelius, our institution embodies the principles of wisdom, leadership, and service to humanity.</p>
+                        
+                        <p>Located in the heart of Cambridge, Massachusetts, our historic campus spans 200 acres of beautifully landscaped grounds, featuring both classical architecture and state-of-the-art facilities. We are proud to serve over 15,000 students from 80 countries worldwide.</p>
+                        
+                        <p>Our mission is to advance knowledge through rigorous scholarship, innovative research, and transformative education that prepares graduates to address the complex challenges of our interconnected world.</p>
+                    </div>
+                    
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            📍 Aurelius University Campus<br>
+                            Cambridge, Massachusetts<br>
+                            Interactive Campus Map
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>📍 123 Academic Avenue<br>Cambridge, MA 02138</p>
+                    <p>📞 +1 (617) 555-0100</p>
+                    <p>✉️ info@aurelius.edu</p>
+                    <div class="social-links">
+                        <a href="#">📘</a>
+                        <a href="#">🐦</a>
+                        <a href="#">📷</a>
+                        <a href="#">💼</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li>Academic Calendar</li>
+                        <li>Library Services</li>
+                        <li>Student Support</li>
+                        <li>Career Services</li>
+                        <li>Alumni Network</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li>Online Learning</li>
+                        <li>Research Centers</li>
+                        <li>Campus Safety</li>
+                        <li>IT Services</li>
+                        <li>Health & Wellness</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Aurelius University. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const matNumber = document.getElementById('matNumber').value;
+            const password = document.getElementById('password').value;
+            
+            // Mock authentication - in real application, this would be server-side
+            if (matNumber === 'DE.2021/4301' && password === '123456789') {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('resultsDashboard').style.display = 'block';
+                
+                // Smooth transition effect
+                setTimeout(() => {
+                    document.getElementById('resultsDashboard').style.opacity = '1';
+                }, 100);
+            } else {
+                alert('Invalid credentials. Please try again.\n\nDemo credentials:\nMat. No: DE.2021/4301\nPassword: 123456789');
+            }
+        }
+
+        // Smooth scrolling for navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Initialize results dashboard opacity
+            document.getElementById('resultsDashboard').style.opacity = '0';
+            document.getElementById('resultsDashboard').style.transition = 'opacity 0.5s ease';
+        });
+
+        // Add some interactive hover effects
+        //09064382894
+        //racheal jinathan neighbor
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.feature-card, .admission-card, .programme-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97607a7526169578',t:'MTc1NjM0OTE4Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
